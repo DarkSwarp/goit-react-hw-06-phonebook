@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 // import { addContact } from 'components/redux/actions/actions';
 import { addContact } from 'components/redux/slice/contactsSlice';
-import { nanoid } from '@reduxjs/toolkit';
+
 
 export default function ContactForm() {
   const [name, setName] = useState('');
@@ -42,8 +42,7 @@ export default function ContactForm() {
     } else if (name.trim() === '' || number.trim() === '') {
       alert("Enter the contact's name and number phone!");
       } else {
-        const id = nanoid();
-      dispatch(addContact({ name, number, id }));
+        dispatch(addContact({ name, number }));
     }
 
     setName('');
