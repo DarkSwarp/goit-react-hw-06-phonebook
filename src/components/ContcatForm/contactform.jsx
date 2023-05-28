@@ -5,7 +5,7 @@ import css from './contactform.module.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 // import { addContact } from 'components/redux/actions/actions';
-import { addContact } from 'components/redux/slice/contactsSlice';
+import { addContact } from '../../redux/slice/contactsSlice';
 
 
 export default function ContactForm() {
@@ -32,12 +32,12 @@ export default function ContactForm() {
   const handlSubmit = e => {
     e.preventDefault();
       if (
-      contacts.find(
+      contacts.items.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
       alert(`${name} is already in contacts.`);
-    } else if (contacts.find(contact => contact.number === number)) {
+    } else if (contacts.items.find(contact => contact.number === number)) {
       alert(`${number} is already in contacts.`);
     } else if (name.trim() === '' || number.trim() === '') {
       alert("Enter the contact's name and number phone!");
