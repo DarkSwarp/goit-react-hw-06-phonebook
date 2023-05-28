@@ -5,7 +5,7 @@ import css from './contactform.module.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 // import { addContact } from 'components/redux/actions/actions';
-import { addContact } from '../../redux/slice/contactsSlice';
+import { addContact, getContacts } from '../../redux/slice/contactsSlice';
 
 
 export default function ContactForm() {
@@ -13,7 +13,7 @@ export default function ContactForm() {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContacts);
 
   const handlChange = e => {
     const { name, value } = e.currentTarget;
@@ -32,12 +32,12 @@ export default function ContactForm() {
   const handlSubmit = e => {
     e.preventDefault();
       if (
-      contacts.items.find(
+      contacts.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
       alert(`${name} is already in contacts.`);
-    } else if (contacts.items.find(contact => contact.number === number)) {
+    } else if (contacts.find(contact => contact.number === number)) {
       alert(`${number} is already in contacts.`);
     } else if (name.trim() === '' || number.trim() === '') {
       alert("Enter the contact's name and number phone!");
